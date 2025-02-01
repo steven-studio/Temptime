@@ -11,6 +11,15 @@ class AddDatingViewController: UIViewController {
     
     private let statusOptions = ["無", "牽手", "親吻", "愛撫", "全壘打"]
     
+    private let meetOptions = [
+        "朋友介紹",
+        "網路認識",
+        "路上搭訕",
+        "同事",
+        "同學",
+        "其他"
+    ]
+    
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -34,6 +43,10 @@ class AddDatingViewController: UIViewController {
     @IBOutlet weak var participantLabel: UILabel!
     @IBOutlet weak var participantTextField: UITextField!
     
+    @IBOutlet weak var meetView: UIView!
+    @IBOutlet weak var meetLabel: UILabel!
+    @IBOutlet weak var meetPicker: UIPickerView!
+    
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusPicker: UIPickerView!
@@ -53,6 +66,9 @@ class AddDatingViewController: UIViewController {
             width: 58, // 設定按鈕寬度
             height: 35  // 設定按鈕高度
         )
+        
+        meetPicker.delegate = self
+        meetPicker.dataSource = self
         
         statusPicker.delegate = self   // pickerView 的委派是自己
         statusPicker.dataSource = self // pickerView 的資料來源也是自己
@@ -136,7 +152,6 @@ class AddDatingViewController: UIViewController {
         NSLayoutConstraint.activate([
             // ⚠️ 注意：這樣會強制 contentLayoutGuide 與 frameLayoutGuide 同大小
             scrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-//            scrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
         ])
         
         scrollView.contentLayoutGuide.heightAnchor.constraint(
@@ -284,7 +299,7 @@ class AddDatingViewController: UIViewController {
             participantView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             participantView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
 
-            // ✅ `locationView` 內部元件控制高度，這樣它會隨著內容大小自動調整
+            // ✅ `participantView` 內部元件控制高度，這樣它會隨著內容大小自動調整
             participantView.heightAnchor.constraint(greaterThanOrEqualToConstant: 60), // 避免 nameView 高度為 0
         ])
         
@@ -313,11 +328,48 @@ class AddDatingViewController: UIViewController {
         participantView.backgroundColor = .systemGray6
         
         participantTextField.borderStyle = .roundedRect
+        
+        // ✅ 設定 meetView 的 Auto Layout
+        meetView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            meetView.topAnchor.constraint(equalTo: participantView.bottomAnchor, constant: fieldSpacing),
+            meetView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            meetView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+
+            // ✅ `meetView` 內部元件控制高度，這樣它會隨著內容大小自動調整
+            meetView.heightAnchor.constraint(greaterThanOrEqualToConstant: 60), // 避免 nameView 高度為 0
+        ])
+        
+        meetPicker.setContentCompressionResistancePriority(.required, for: .vertical)
+        
+        if let meetLabel = meetLabel, let meetPicker = meetPicker {
+            meetLabel.translatesAutoresizingMaskIntoConstraints = false
+            meetPicker.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                // `locationLabel` 置頂
+                meetLabel.topAnchor.constraint(equalTo: meetView.topAnchor, constant: fieldSpacing),
+                meetLabel.leadingAnchor.constraint(equalTo: meetView.leadingAnchor, constant: fieldSpacing),
+                meetLabel.trailingAnchor.constraint(equalTo: meetView.trailingAnchor, constant: -fieldSpacing),
+                meetLabel.heightAnchor.constraint(equalToConstant: labelHeight),
+
+                // `meetTextField` 置於 `meetLabel` 下方
+                meetPicker.topAnchor.constraint(equalTo: meetLabel.bottomAnchor, constant: fieldSpacing),
+                meetPicker.leadingAnchor.constraint(equalTo: meetView.leadingAnchor, constant: fieldSpacing),
+                meetPicker.trailingAnchor.constraint(equalTo: meetView.trailingAnchor, constant: -fieldSpacing),
+                meetPicker.heightAnchor.constraint(equalToConstant: 80),
+
+                // ✅ `dateView` 自動擴展，包住 `dateLabel` 和 `dateTextField`
+                meetPicker.bottomAnchor.constraint(equalTo: meetView.bottomAnchor, constant: -fieldSpacing)
+            ])
+        }
+        
+        meetView.backgroundColor = .systemGray6
 
         // ✅ 設定 statusView 的 Auto Layout
         statusView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            statusView.topAnchor.constraint(equalTo: participantView.bottomAnchor, constant: fieldSpacing),
+            statusView.topAnchor.constraint(equalTo: meetView.bottomAnchor, constant: fieldSpacing),
             statusView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             statusView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
 //            statusView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
@@ -451,21 +503,38 @@ extension AddDatingViewController: UIPickerViewDataSource, UIPickerViewDelegate 
     
     // UIPickerViewDataSource: 該欄有幾列 (row)
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return statusOptions.count
+        // 判斷 pickerView 是 meetPicker 還是 statusPicker
+        if pickerView == meetPicker {
+            return meetOptions.count   // 「怎麼認識」的選項
+        } else if pickerView == statusPicker {
+            return statusOptions.count // 「狀態」的選項
+        } else {
+            return 0
+        }
     }
     
     // UIPickerViewDelegate: 每一列要顯示的文字
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return statusOptions[row]
+        if pickerView == meetPicker {
+            return meetOptions[row]
+        } else if pickerView == statusPicker {
+            return statusOptions[row]
+        } else {
+            return nil
+        }
     }
     
     // UIPickerViewDelegate: 選到哪一列
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedStatus = statusOptions[row]
-        print("使用者選了狀態：\(selectedStatus)")
-        
-        // 你可以在這裡把選到的值存到 Core Data、或某個變數
-        // e.g. self.currentStatus = selectedStatus
+        if pickerView == meetPicker {
+            let selectedMeet = meetOptions[row]
+            print("使用者選了怎麼認識方式：\(selectedMeet)")
+            // 可以存在變數 e.g. self.currentMeet = selectedMeet
+        } else if pickerView == statusPicker {
+            let selectedStatus = statusOptions[row]
+            print("使用者選了狀態：\(selectedStatus)")
+            // 可以存在變數 e.g. self.currentStatus = selectedStatus
+        }
     }
 }
 
