@@ -6,6 +6,57 @@
 //
 
 import UIKit
+import PhotosUI
+
+extension AddDatingViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        // 關閉選擇器
+        picker.dismiss(animated: true, completion: nil)
+        
+        // 確定至少有一個結果
+        guard let itemProvider = results.first?.itemProvider else { return }
+
+        // 檢查 itemProvider 是否能加載影片
+        if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+            // 載入檔案表示 (會在沙盒 tmp 目錄生成一個檔案)
+            itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] (url, error) in
+                guard let self = self, let sourceURL = url else { return }
+                if let error = error {
+                    print("❌ 載入影片檔案失敗: \(error)")
+                    return
+                }
+                
+                do {
+                    // 將 tmp 檔案複製到 Documents，以便後續長期保存
+                    let fileManager = FileManager.default
+                    let documents = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    
+                    // 產生一個檔名
+                    let newFileName = "pickedVideo\(Date().timeIntervalSince1970).mov"
+                    let destinationURL = documents.appendingPathComponent(newFileName)
+                    
+                    // 先確保若有同名檔案就刪除 (避免衝突)
+                    if fileManager.fileExists(atPath: destinationURL.path) {
+                        try fileManager.removeItem(at: destinationURL)
+                    }
+                    
+                    try fileManager.copyItem(at: sourceURL, to: destinationURL)
+                    
+                    // 在主執行緒裡更新UI或屬性
+                    DispatchQueue.main.async {
+                        // 把最終沙盒路徑存起來
+                        self.selectedVideoPath = destinationURL.path
+                        print("✅ 成功複製影片到: \(destinationURL.path)")
+                    }
+                } catch {
+                    print("❌ 無法複製檔案: \(error)")
+                }
+            }
+        } else {
+            print("❌ 選取的不是影片格式")
+        }
+    }
+}
 
 class AddDatingViewController: UIViewController {
     
@@ -15,6 +66,7 @@ class AddDatingViewController: UIViewController {
         "朋友介紹",
         "網路認識",
         "路上搭訕",
+        "搭訕即約",
         "同事",
         "同學",
         "其他"
@@ -54,6 +106,19 @@ class AddDatingViewController: UIViewController {
     @IBOutlet weak var eventView: UIView!
     @IBOutlet weak var eventLabel: UILabel!
     @IBOutlet weak var eventTextView: UITextView!
+    
+    @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var videoLabel: UILabel!
+    @IBOutlet weak var videoButton: UIButton!
+    
+    // 用來暫存從 meetPicker 選到的結果
+    var currentMeet: String?
+    
+    // 先宣告一個屬性，用來存「使用者在 statusPicker 選到的結果」
+    var currentStatus: String?
+    
+    // 用來存使用者最終選到的影片在沙盒中的「檔案路徑」
+    var selectedVideoPath: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -444,16 +509,104 @@ class AddDatingViewController: UIViewController {
 //        eventTextView.layer.borderWidth = 1.0                       // 邊框線寬
         eventTextView.layer.cornerRadius = 6.0                      // 圓角大小
         eventTextView.layer.masksToBounds = true                   // 確保超出範圍被裁切
+        
+        // ✅ 設定 VideoView 的 Auto Layout
+        videoView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            videoView.topAnchor.constraint(equalTo: eventView.bottomAnchor, constant: fieldSpacing),
+            videoView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            videoView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            videoView.heightAnchor.constraint(greaterThanOrEqualToConstant: 60), // 避免 nameView 高度為 0
+            
+            // ✅ `NameView` 的 BottomAnchor 讓 `nameView` 正確計算 `contentSize`
+//            nameView.bottomAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
+        ])
+        
+        if let videoLabel = videoLabel, let videoButton = videoButton {
+            videoLabel.translatesAutoresizingMaskIntoConstraints = false
+            videoButton.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                // `videoLabel` 置頂
+                videoLabel.topAnchor.constraint(equalTo: videoView.topAnchor, constant: fieldSpacing),
+                videoLabel.leadingAnchor.constraint(equalTo: videoView.leadingAnchor, constant: fieldSpacing),
+                videoLabel.trailingAnchor.constraint(equalTo: videoView.trailingAnchor, constant: -fieldSpacing),
+                videoLabel.heightAnchor.constraint(equalToConstant: labelHeight),
+
+                // `eventTextView` 置於 `eventLabel` 下方
+                videoButton.topAnchor.constraint(equalTo: videoLabel.bottomAnchor, constant: fieldSpacing),
+                videoButton.leadingAnchor.constraint(equalTo: videoView.leadingAnchor, constant: fieldSpacing),
+                videoButton.trailingAnchor.constraint(equalTo: videoView.trailingAnchor, constant: -fieldSpacing),
+                
+                // ✅ `eventView` 自動擴展，包住 `eventLabel` 和 `eventTextView`
+                videoButton.bottomAnchor.constraint(equalTo: videoView.bottomAnchor, constant: -fieldSpacing),
+                videoButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 100), // 避免 eventView 高度為 0
+            ])
+        }
+        
+        videoButton.contentHorizontalAlignment = .center
+        videoButton.contentVerticalAlignment = .center
+        videoButton.clipsToBounds = true
+
+        // 2. 設定 contentMode 為 .scaleAspectFit
+        videoButton.imageView?.contentMode = .scaleAspectFit
+
+        // 3. (選擇性) 設定額外的 edgeInsets 讓圖片與按鈕邊緣留些空間
+//        videoButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        // 1. 建立一個 configuration (可用 .plain()、.bordered()、.filled() 等)
+        var config = UIButton.Configuration.plain()
+
+        // 2. 設定圖片
+        if let image = UIImage(named: "video-placeholder") {
+            let halfImage = image.scaled(by: (videoButton.frame.width) / 600) // 縮小一半
+            config.image = halfImage
+        }
+        
+        // 圖片和文字的間距
+        config.imagePadding = 8
+        // 圖片擺放位置（leading、trailing、top、bottom）
+        config.imagePlacement = .leading
+
+        // 3. 設定整體內容的四邊內距
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+        // 4. 指派給按鈕
+        videoButton.configuration = config
+        
+        videoView.backgroundColor = .systemGray6
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("📢 nameTextField.isUserInteractionEnabled = \(nameTextField.isUserInteractionEnabled)")
-        print("📢 nameTextField.isEnabled = \(nameTextField.isEnabled)")
-
-        print("📢 scrollView.frame:", scrollView.frame)
-        print("📢 scrollView.contentLayoutGuide.layoutFrame:", scrollView.contentLayoutGuide.layoutFrame)
-        print("📢 stackView.frame:", stackView.frame)
+//        print("📢 nameTextField.isUserInteractionEnabled = \(nameTextField.isUserInteractionEnabled)")
+//        print("📢 nameTextField.isEnabled = \(nameTextField.isEnabled)")
+//
+//        print("📢 scrollView.frame:", scrollView.frame)
+//        print("📢 scrollView.contentLayoutGuide.layoutFrame:", scrollView.contentLayoutGuide.layoutFrame)
+//        print("📢 stackView.frame:", stackView.frame)
+//        print("📢 nameView.frame:", nameView.frame)
+//        print("📢 dateView.frame:", dateView.frame)
+//        print("📢 dateLabel.frame:", dateLabel.frame)
+//        print("📢 dateTextField.frame:", dateTextField.frame)
+//        print("📢 locationView.frame:", locationView.frame)
+//        print("📢 locationLabel.frame:", locationLabel.frame)
+//        print("📢 locationTextField.frame:", locationTextField.frame)
+//        print("📢 participantView.frame:", participantView.frame)
+//        print("📢 participantLabel.frame:", participantLabel.frame)
+//        print("📢 participantTextField.frame:", participantTextField.frame)
+//        print("📢 meetView.frame:", meetView.frame)
+//        print("📢 meetLabel.frame:", meetLabel.frame)
+//        print("📢 meetPicker.frame:", meetPicker.frame)
+//        print("📢 statusView.frame:", statusView.frame)
+//        print("📢 statusLabel.frame:", statusLabel.frame)
+//        print("📢 statusPicker.frame:", statusPicker.frame)
+//        print("📢 eventView.frame:", eventView.frame)
+//        print("📢 eventLabel.frame:", eventLabel.frame)
+//        print("📢 eventTextView.frame:", eventTextView.frame)
+//        print("📢 videoView.frame:", videoView.frame)
+//        print("📢 videoLabel.frame:", videoLabel.frame)
+//        print("📢 videoButton.frame:", videoButton.frame)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -469,6 +622,14 @@ class AddDatingViewController: UIViewController {
         newDating.name = nameTextField.text
         newDating.date = datePicker.date
         newDating.type = datingTypeSegment.titleForSegment(at: datingTypeSegment.selectedSegmentIndex)
+        newDating.location = locationTextField.text
+        newDating.participant = participantTextField.text
+        newDating.meet = self.currentMeet
+        newDating.status = self.currentStatus
+        newDating.event = eventTextView.text
+        
+        // 如果你有 selectedVideoPath，就存進 Core Data
+        newDating.videoPath = self.selectedVideoPath
 
         do {
             try context.save()
@@ -482,6 +643,19 @@ class AddDatingViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func videoButtonTapped(_ sender: Any) {
+        // 1. 建立 PHPickerConfiguration
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .videos  // 只挑選影片
+        configuration.selectionLimit = 1 // 最多一次選 1 個
+
+        // 2. 建立 PHPickerViewController
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self // 記得實作
+
+        // 3. 顯示 picker
+        present(picker, animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -492,6 +666,20 @@ class AddDatingViewController: UIViewController {
     }
     */
 
+}
+
+extension UIImage {
+    /// 依指定 scale 做寬高等比縮放
+    /// 例如 scale=0.5 就是縮小一半； scale=2.0 就是放大兩倍
+    func scaled(by scale: CGFloat) -> UIImage? {
+        guard scale > 0 else { return self }
+        
+        let targetSize = CGSize(width: size.width * scale, height: size.height * scale)
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+    }
 }
 
 extension AddDatingViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -527,11 +715,17 @@ extension AddDatingViewController: UIPickerViewDataSource, UIPickerViewDelegate 
     // UIPickerViewDelegate: 選到哪一列
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == meetPicker {
+            // 1. 取出選中的文字
             let selectedMeet = meetOptions[row]
-            print("使用者選了怎麼認識方式：\(selectedMeet)")
+            
+            // 2. 存到我們預先宣告的 currentMeet
+            self.currentMeet = selectedMeet
+            
+            print("選到的認識方式是：\(selectedMeet)")
             // 可以存在變數 e.g. self.currentMeet = selectedMeet
         } else if pickerView == statusPicker {
             let selectedStatus = statusOptions[row]
+            self.currentStatus = selectedStatus
             print("使用者選了狀態：\(selectedStatus)")
             // 可以存在變數 e.g. self.currentStatus = selectedStatus
         }

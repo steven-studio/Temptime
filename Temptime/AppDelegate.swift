@@ -7,14 +7,50 @@
 
 import UIKit
 import CoreData
+import Firebase
+import WatchConnectivity
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: (any Error)?) {
+        if let error = error {
+            print("❌ iPhone WCSession 啟動失敗: \(error.localizedDescription)")
+        } else {
+            print("✅ iPhone WCSession 啟動狀態: \(activationState.rawValue)")
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let array = message["heartRateSeries"] as? [[String: Any]] {
+            // 解析
+            for item in array {
+                if let ts = item["timestamp"] as? TimeInterval,
+                   let bpm = item["bpm"] as? Double {
+                    let date = Date(timeIntervalSince1970: ts)
+                    print("心率 \(bpm) at \(date)")
+                }
+            }
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        // 這裡通常可以留空或只做紀錄
+        print("WCSession 在 iOS 端變為 Inactive 狀態")
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        // 在 iOS 端通常不需要特別重新激活，
+        // 但如果您在特殊情況需要再次 activate()，可在這裡呼叫
+        print("WCSession 在 iOS 端已 Deactivate")
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        if WCSession.isSupported() {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
         return true
     }
 
@@ -76,6 +112,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
-

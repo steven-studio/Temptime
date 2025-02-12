@@ -10,9 +10,31 @@
 		0B9DF6DC6FC90E560DE3852A /* Pods_Temptime_TemptimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84635394BD099861BB31EEFE /* Pods_Temptime_TemptimeUITests.framework */; };
 		59F78DE611F61A4BACEE1B0C /* Pods_Temptime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC413B0E85CCED6F6F60C79 /* Pods_Temptime.framework */; };
 		820F905280632DC0FB271DA9 /* Pods_TemptimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBC6824810E1B70FC987817 /* Pods_TemptimeTests.framework */; };
+		D07B3F352D5C27820015C7AA /* Temptime WatchApp Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D07B3F122D5C27810015C7AA /* Temptime WatchApp Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D07B3F222D5C27820015C7AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0CDB80B2D4CDC1600A65195 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D07B3F112D5C27810015C7AA;
+			remoteInfo = "Temptime WatchApp Watch App";
+		};
+		D07B3F2C2D5C27820015C7AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0CDB80B2D4CDC1600A65195 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D07B3F112D5C27810015C7AA;
+			remoteInfo = "Temptime WatchApp Watch App";
+		};
+		D07B3F332D5C27820015C7AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0CDB80B2D4CDC1600A65195 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D07B3F112D5C27810015C7AA;
+			remoteInfo = "Temptime WatchApp Watch App";
+		};
 		D0CDB82D2D4CDC1700A65195 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D0CDB80B2D4CDC1600A65195 /* Project object */;
@@ -29,6 +51,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D07B3F362D5C27820015C7AA /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D07B3F352D5C27820015C7AA /* Temptime WatchApp Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		34CCDCD63284E19D439AC604 /* Pods-TemptimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TemptimeTests.debug.xcconfig"; path = "Target Support Files/Pods-TemptimeTests/Pods-TemptimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		687D5EAB08B3684DBCA7000C /* Pods-Temptime-TemptimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Temptime-TemptimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-Temptime-TemptimeUITests/Pods-Temptime-TemptimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -36,6 +72,9 @@
 		AA351F2951B317C4D4BCB809 /* Pods-Temptime-TemptimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Temptime-TemptimeUITests.release.xcconfig"; path = "Target Support Files/Pods-Temptime-TemptimeUITests/Pods-Temptime-TemptimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ABBC6824810E1B70FC987817 /* Pods_TemptimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemptimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70A5E13D01C33158573188A /* Pods-TemptimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TemptimeTests.release.xcconfig"; path = "Target Support Files/Pods-TemptimeTests/Pods-TemptimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		D07B3F122D5C27810015C7AA /* Temptime WatchApp Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Temptime WatchApp Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D07B3F212D5C27820015C7AA /* Temptime WatchApp Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Temptime WatchApp Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D07B3F2B2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Temptime WatchApp Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0CDB8132D4CDC1600A65195 /* Temptime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Temptime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0CDB82C2D4CDC1700A65195 /* TemptimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemptimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0CDB8362D4CDC1700A65195 /* TemptimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemptimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +94,21 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		D07B3F132D5C27810015C7AA /* Temptime WatchApp Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Temptime WatchApp Watch App";
+			sourceTree = "<group>";
+		};
+		D07B3F242D5C27820015C7AA /* Temptime WatchApp Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Temptime WatchApp Watch AppTests";
+			sourceTree = "<group>";
+		};
+		D07B3F2E2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Temptime WatchApp Watch AppUITests";
+			sourceTree = "<group>";
+		};
 		D0CDB8152D4CDC1600A65195 /* Temptime */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -76,6 +130,27 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D07B3F0F2D5C27810015C7AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D07B3F1E2D5C27820015C7AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D07B3F282D5C27820015C7AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0CDB8102D4CDC1600A65195 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,6 +207,9 @@
 				D0CDB8152D4CDC1600A65195 /* Temptime */,
 				D0CDB82F2D4CDC1700A65195 /* TemptimeTests */,
 				D0CDB8392D4CDC1700A65195 /* TemptimeUITests */,
+				D07B3F132D5C27810015C7AA /* Temptime WatchApp Watch App */,
+				D07B3F242D5C27820015C7AA /* Temptime WatchApp Watch AppTests */,
+				D07B3F2E2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests */,
 				D0CDB8142D4CDC1600A65195 /* Products */,
 				32F79B48EB86DCBC161DCA9E /* Pods */,
 				22BB60A6C29E15516649D667 /* Frameworks */,
@@ -144,6 +222,9 @@
 				D0CDB8132D4CDC1600A65195 /* Temptime.app */,
 				D0CDB82C2D4CDC1700A65195 /* TemptimeTests.xctest */,
 				D0CDB8362D4CDC1700A65195 /* TemptimeUITests.xctest */,
+				D07B3F122D5C27810015C7AA /* Temptime WatchApp Watch App.app */,
+				D07B3F212D5C27820015C7AA /* Temptime WatchApp Watch AppTests.xctest */,
+				D07B3F2B2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,6 +232,74 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D07B3F112D5C27810015C7AA /* Temptime WatchApp Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D07B3F3D2D5C27820015C7AA /* Build configuration list for PBXNativeTarget "Temptime WatchApp Watch App" */;
+			buildPhases = (
+				D07B3F0E2D5C27810015C7AA /* Sources */,
+				D07B3F0F2D5C27810015C7AA /* Frameworks */,
+				D07B3F102D5C27810015C7AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D07B3F132D5C27810015C7AA /* Temptime WatchApp Watch App */,
+			);
+			name = "Temptime WatchApp Watch App";
+			packageProductDependencies = (
+			);
+			productName = "Temptime WatchApp Watch App";
+			productReference = D07B3F122D5C27810015C7AA /* Temptime WatchApp Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D07B3F202D5C27820015C7AA /* Temptime WatchApp Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D07B3F3E2D5C27820015C7AA /* Build configuration list for PBXNativeTarget "Temptime WatchApp Watch AppTests" */;
+			buildPhases = (
+				D07B3F1D2D5C27820015C7AA /* Sources */,
+				D07B3F1E2D5C27820015C7AA /* Frameworks */,
+				D07B3F1F2D5C27820015C7AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D07B3F232D5C27820015C7AA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D07B3F242D5C27820015C7AA /* Temptime WatchApp Watch AppTests */,
+			);
+			name = "Temptime WatchApp Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "Temptime WatchApp Watch AppTests";
+			productReference = D07B3F212D5C27820015C7AA /* Temptime WatchApp Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D07B3F2A2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D07B3F3F2D5C27820015C7AA /* Build configuration list for PBXNativeTarget "Temptime WatchApp Watch AppUITests" */;
+			buildPhases = (
+				D07B3F272D5C27820015C7AA /* Sources */,
+				D07B3F282D5C27820015C7AA /* Frameworks */,
+				D07B3F292D5C27820015C7AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D07B3F2D2D5C27820015C7AA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D07B3F2E2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests */,
+			);
+			name = "Temptime WatchApp Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "Temptime WatchApp Watch AppUITests";
+			productReference = D07B3F2B2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D0CDB8122D4CDC1600A65195 /* Temptime */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0CDB83F2D4CDC1700A65195 /* Build configuration list for PBXNativeTarget "Temptime" */;
@@ -160,10 +309,12 @@
 				D0CDB8102D4CDC1600A65195 /* Frameworks */,
 				D0CDB8112D4CDC1600A65195 /* Resources */,
 				FE217D3040D596CAC6CCFCA0 /* [CP] Embed Pods Frameworks */,
+				D07B3F362D5C27820015C7AA /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D07B3F342D5C27820015C7AA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D0CDB8152D4CDC1600A65195 /* Temptime */,
@@ -228,6 +379,17 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					D07B3F112D5C27810015C7AA = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					D07B3F202D5C27820015C7AA = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = D07B3F112D5C27810015C7AA;
+					};
+					D07B3F2A2D5C27820015C7AA = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = D07B3F112D5C27810015C7AA;
+					};
 					D0CDB8122D4CDC1600A65195 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -258,11 +420,35 @@
 				D0CDB8122D4CDC1600A65195 /* Temptime */,
 				D0CDB82B2D4CDC1700A65195 /* TemptimeTests */,
 				D0CDB8352D4CDC1700A65195 /* TemptimeUITests */,
+				D07B3F112D5C27810015C7AA /* Temptime WatchApp Watch App */,
+				D07B3F202D5C27820015C7AA /* Temptime WatchApp Watch AppTests */,
+				D07B3F2A2D5C27820015C7AA /* Temptime WatchApp Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D07B3F102D5C27810015C7AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D07B3F1F2D5C27820015C7AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D07B3F292D5C27820015C7AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0CDB8112D4CDC1600A65195 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -390,6 +576,27 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D07B3F0E2D5C27810015C7AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D07B3F1D2D5C27820015C7AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D07B3F272D5C27820015C7AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0CDB80F2D4CDC1600A65195 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -414,6 +621,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D07B3F232D5C27820015C7AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D07B3F112D5C27810015C7AA /* Temptime WatchApp Watch App */;
+			targetProxy = D07B3F222D5C27820015C7AA /* PBXContainerItemProxy */;
+		};
+		D07B3F2D2D5C27820015C7AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D07B3F112D5C27810015C7AA /* Temptime WatchApp Watch App */;
+			targetProxy = D07B3F2C2D5C27820015C7AA /* PBXContainerItemProxy */;
+		};
+		D07B3F342D5C27820015C7AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D07B3F112D5C27810015C7AA /* Temptime WatchApp Watch App */;
+			targetProxy = D07B3F332D5C27820015C7AA /* PBXContainerItemProxy */;
+		};
 		D0CDB82E2D4CDC1700A65195 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D0CDB8122D4CDC1600A65195 /* Temptime */;
@@ -427,12 +649,160 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		D07B3F372D5C27820015C7AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Temptime WatchApp Watch App/Temptime WatchApp Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Temptime WatchApp Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 5YGLWU7828;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Temptime WatchApp";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "我們需要存取您的心率和血氧資訊，以顯示即時健康狀態";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "我們需要將相關資訊寫入健康資料，以便您更好地追蹤身體狀態";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = steven.studio.Temptime;
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = steven.studio.Temptime.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.7;
+			};
+			name = Debug;
+		};
+		D07B3F382D5C27820015C7AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Temptime WatchApp Watch App/Temptime WatchApp Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Temptime WatchApp Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 5YGLWU7828;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Temptime WatchApp";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "我們需要存取您的心率和血氧資訊，以顯示即時健康狀態";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "我們需要將相關資訊寫入健康資料，以便您更好地追蹤身體狀態";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = steven.studio.Temptime;
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = steven.studio.Temptime.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.7;
+			};
+			name = Release;
+		};
+		D07B3F392D5C27820015C7AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YGLWU7828;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "steven.studio.Temptime-WatchApp-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Temptime WatchApp Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Temptime WatchApp Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		D07B3F3A2D5C27820015C7AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YGLWU7828;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "steven.studio.Temptime-WatchApp-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Temptime WatchApp Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Temptime WatchApp Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
+		D07B3F3B2D5C27820015C7AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YGLWU7828;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "steven.studio.Temptime-WatchApp-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Temptime WatchApp Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Debug;
+		};
+		D07B3F3C2D5C27820015C7AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5YGLWU7828;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "steven.studio.Temptime-WatchApp-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Temptime WatchApp Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.2;
+			};
+			name = Release;
+		};
 		D0CDB8402D4CDC1700A65195 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE7788E0F0898E4F32532019 /* Pods-Temptime.debug.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Temptime/Temptime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5YGLWU7828;
@@ -462,8 +832,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE5305606981D8B68E991FFA /* Pods-Temptime.release.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Temptime/Temptime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5YGLWU7828;
@@ -687,6 +1059,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D07B3F3D2D5C27820015C7AA /* Build configuration list for PBXNativeTarget "Temptime WatchApp Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D07B3F372D5C27820015C7AA /* Debug */,
+				D07B3F382D5C27820015C7AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D07B3F3E2D5C27820015C7AA /* Build configuration list for PBXNativeTarget "Temptime WatchApp Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D07B3F392D5C27820015C7AA /* Debug */,
+				D07B3F3A2D5C27820015C7AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D07B3F3F2D5C27820015C7AA /* Build configuration list for PBXNativeTarget "Temptime WatchApp Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D07B3F3B2D5C27820015C7AA /* Debug */,
+				D07B3F3C2D5C27820015C7AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D0CDB80E2D4CDC1600A65195 /* Build configuration list for PBXProject "Temptime" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

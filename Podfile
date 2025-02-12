@@ -7,6 +7,9 @@ target 'Temptime' do
 
   # Pods for Temptime
   pod 'FSCalendar'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'  
 
   target 'TemptimeTests' do
     inherit! :search_paths

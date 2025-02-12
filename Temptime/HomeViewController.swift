@@ -12,6 +12,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addDatingButton: UIButton!
+    @IBOutlet weak var addPickupButton: UIButton!
+    @IBOutlet weak var viewFullDataButton: UIButton!
     
     var datings: [Dating] = []
 
@@ -28,6 +30,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "meetingCell")
         
         addDatingButton.translatesAutoresizingMaskIntoConstraints = false
+        addPickupButton.translatesAutoresizingMaskIntoConstraints = false
+        viewFullDataButton.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         // ✅ 設定 Auto Layout
@@ -38,8 +42,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             addDatingButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             addDatingButton.heightAnchor.constraint(equalToConstant: 60),
             
+            // 設定 addPickupButton
+            addPickupButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            addPickupButton.topAnchor.constraint(equalTo: addDatingButton.bottomAnchor, constant: 0),
+            addPickupButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            addPickupButton.heightAnchor.constraint(equalToConstant: 60),
+
+            // 設定 viewFullDataButton
+            viewFullDataButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            viewFullDataButton.topAnchor.constraint(equalTo: addPickupButton.bottomAnchor, constant: 0),
+            viewFullDataButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            viewFullDataButton.heightAnchor.constraint(equalToConstant: 60),
+
             // ✅ 設定 tableView 的 top 在 addDatingButton 的底部
-            tableView.topAnchor.constraint(equalTo: addDatingButton.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: viewFullDataButton.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0) // 讓 tableView 填滿剩餘空間
@@ -180,6 +196,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let addDatingVC = storyboard.instantiateViewController(withIdentifier: "AddDatingViewController") as! AddDatingViewController
         addDatingVC.modalPresentationStyle = .fullScreen // ✅ 設定為全螢幕
         present(addDatingVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func addPickupTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let addPickupVC = storyboard.instantiateViewController(withIdentifier: "AddPickupViewController") as! AddPickupViewController
+        addPickupVC.modalPresentationStyle = .fullScreen // ✅ 設定為全螢幕
+        present(addPickupVC, animated: true, completion: nil)
     }
     
     // ✅ TableView DataSource

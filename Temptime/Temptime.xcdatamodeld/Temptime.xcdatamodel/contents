@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24B2083" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24D60" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Dating" representedClassName="Dating" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="event" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="meet" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="participant" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="videoPath" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PickUp" representedClassName="PickUp" syncable="YES" codeGenerationType="class">
+        <attribute name="audioPath" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hasInstantDating" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="hasPickUpNumber" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="locationNote" optional="YES" attributeType="String"/>
+        <attribute name="opening" optional="YES" attributeType="String"/>
+        <attribute name="recordingText" optional="YES" attributeType="String"/>
+        <attribute name="videoPath" optional="YES" attributeType="String"/>
     </entity>
 </model>
