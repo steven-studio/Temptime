@@ -666,7 +666,7 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "我們需要將相關資訊寫入健康資料，以便您更好地追蹤身體狀態";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = steven.studio.Temptime;
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKWatchOnly = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -700,7 +700,7 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "我們需要將相關資訊寫入健康資料，以便您更好地追蹤身體狀態";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = steven.studio.Temptime;
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKWatchOnly = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

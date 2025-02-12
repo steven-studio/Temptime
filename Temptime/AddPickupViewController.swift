@@ -133,6 +133,9 @@ class AddPickupViewController: UIViewController, AVAudioRecorderDelegate {
     // 用來儲存使用者最後選到的本地檔案路徑
     var videoLocalPath: String? = nil
     
+    var initialGirlName: String = ""
+    var initialNote: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -694,6 +697,8 @@ class AddPickupViewController: UIViewController, AVAudioRecorderDelegate {
         newPickUp.hasPickUpNumber = hasPickUpNumberButton.isSelected
         newPickUp.hasInstantDating = hasInstantDatingButton.isSelected
         newPickUp.createdAt = Date()
+        newPickUp.girlName = initialGirlName
+        newPickUp.note = initialNote
 
         do {
             try context.save()
@@ -717,7 +722,9 @@ class AddPickupViewController: UIViewController, AVAudioRecorderDelegate {
             "hasPickUpNumber": newPickUp.hasPickUpNumber,
             "hasInstantDating": newPickUp.hasInstantDating,
             // Firestore 也可存 Timestamp；可以自行轉成 Date 物件
-            "createdAt": Timestamp(date: newPickUp.createdAt ?? Date())
+            "createdAt": newPickUp.createdAt ?? Date(),
+            "girlName": newPickUp.girlName ?? "",
+            "note": newPickUp.note ?? ""
         ]
 
         // 新增一筆文件到 "pickups" 集合裡

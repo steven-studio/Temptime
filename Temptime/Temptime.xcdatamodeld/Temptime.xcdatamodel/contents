@@ -15,10 +15,12 @@
     <entity name="PickUp" representedClassName="PickUp" syncable="YES" codeGenerationType="class">
         <attribute name="audioPath" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="girlName" optional="YES" attributeType="String"/>
         <attribute name="hasInstantDating" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hasPickUpNumber" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="location" optional="YES" attributeType="String"/>
         <attribute name="locationNote" optional="YES" attributeType="String"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="opening" optional="YES" attributeType="String"/>
         <attribute name="recordingText" optional="YES" attributeType="String"/>
         <attribute name="videoPath" optional="YES" attributeType="String"/>
